@@ -3,7 +3,10 @@
         <v-tabs
                 b-model="active"
                 color="info"
-                slider-color="yellow">
+                light
+                slider-color="yellow"
+                centered
+        >
             <v-tab
                     v-for="i in tabs"
                     :key="i"
@@ -19,13 +22,13 @@
                     <v-flex xs6>
                         <v-form ref="form" v-model="valid" lazy-validation>
                             <v-text-field
-                                    v-model="email"
-                                    label="email"
+                                    v-model="Email"
+                                    label="Email"
                                     required
                             ></v-text-field>
                             <v-text-field
-                                    v-model="password"
-                                    label="password"
+                                    v-model="Password"
+                                    label="Password"
                                     required
                             ></v-text-field>
                             <v-layout align-center justify-center>
@@ -34,6 +37,7 @@
                                             :disabled="!valid"
                                             @click="submit"
                                             color="info"
+                                            large
                                     >
                                         Google Sign in
                                     </v-btn>
@@ -42,6 +46,7 @@
                                             :disabled="!valid"
                                             @click="submit"
                                             color="info"
+                                            large
                                     >
                                         Facebook sign in
                                     </v-btn>
@@ -56,12 +61,12 @@
                         <v-form ref="form" v-model="valid" lazy-validation>
                             <v-text-field
                                     v-model="email"
-                                    label="email"
+                                    label="Email"
                                     required
                             ></v-text-field>
                             <v-text-field
                                     v-model="password"
-                                    label="password"
+                                    label="Password"
                                     required
                             ></v-text-field>
                             <v-layout align-center justify-center>
@@ -70,6 +75,7 @@
                                             :disabled="!valid"
                                             @click="submit"
                                             color="info"
+                                            large
                                     >
                                         Register
                                     </v-btn>
