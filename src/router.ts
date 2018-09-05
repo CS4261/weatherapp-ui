@@ -1,19 +1,21 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
-import login from './views/initialLogin.vue';
-import weather from './views/weather.vue';
+// @ts-ignore
+import store from 'store';
+import Vuex from './store';
+import login from './views/Login.vue';
+import Home from './views/Weather.vue';
 
 Vue.use(Router);
 
-export default new Router({
+let router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
-      name: 'weather',
-      component: weather,
+      name: 'Home',
+      component: Home,
     },
     {
       path: '/login',
@@ -25,3 +27,20 @@ export default new Router({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+    document.title = 'Weather App | ' + to.name
+    const user = store.get('user');
+    if (user && to.path !== '/login') {
+        Vuex.dispatch('setUser', user);
+        next()
+    }  else if (user && to.path === '/login') {
+        next({name: 'Home'})
+    } else if (to.path !== '/login') {
+        next({path: '/login'});
+    } else {
+        next()
+    }
+})
+
+export default router;
